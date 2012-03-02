@@ -12,6 +12,7 @@ namespace PepoBebes.Models
         public static void Init()
         {
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+            //Sacar esto para no cambiar la bd
             Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<Context>());
         }
 
