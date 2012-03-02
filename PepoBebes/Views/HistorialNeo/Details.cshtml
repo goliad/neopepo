@@ -1,0 +1,80 @@
+﻿@model PepoBebes.Models.HistorialNeo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>HistorialNeo</legend>
+
+    <div class="display-label">fecha</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">tipo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tipo)
+    </div>
+
+    <div class="display-label">fechaIngreso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaIngreso)
+    </div>
+
+    <div class="display-label">pesoNeo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pesoNeo)
+    </div>
+
+    <div class="display-label">lugarNacimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lugarNacimiento)
+    </div>
+
+    <div class="display-label">derivacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.derivacion)
+    </div>
+
+    <div class="display-label">medicoReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.medicoReceptor)
+    </div>
+
+    <div class="display-label">diagnostico</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.diagnostico)
+    </div>
+
+    <div class="display-label">fechaEgreso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaEgreso)
+    </div>
+
+    <div class="display-label">medicoAlta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.medicoAlta)
+    </div>
+
+    <div class="display-label">responsable</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.responsable)
+    </div>
+
+    <div class="display-label">observaciones</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.observaciones)
+    </div>
+
+    <div class="display-label">bebe</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bebe.dni)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.historialNeoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

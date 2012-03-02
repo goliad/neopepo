@@ -1,0 +1,24 @@
+﻿/* gloabl styles */
+/* @group elements */
+* { margin: 0; padding: 0; }
+html { height: 101%; font-family: Arial, Tahoma, sans-serif; }
+body { font-size: 62.5%; background: #e8f0f7; }
+
+h1 { font-size: 1.7em; color: #343434; margin-bottom: 20px; }
+h2 { font-size: 2.0em; font-weight: normal; font-family: Helvetica, Geneva, sans-serif; color: #b0d3ed; margin-bottom: 22px; margin-top: 10px; }
+p { display: block; font-size: 1.2em; color: #343434; margin-bottom: 15px; }
+
+h2 strong { color: #86a5d5; }
+
+input[type="text"], input[type="password"], textarea, select { outline: none; } /* hide outlines in chrome */
+
+/* @group page boxes */
+#c { width: 600px; margin: 0 auto; padding: 8px 12px; margin-top: 44px; border: 1px solid #c3d1d7; background: #fefefe; text-align: center; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
+
+/* @group form */
+#instantform { padding: 7px 12px; margin-bottom: 30px; margin-top: -12px; }
+#instantform input[type=text], #instantform input[type=password] { background: #fefefe; font-size: 1.4em; color: #898989; font-family: Verdana, Arial, sans-serif; border: 1px solid #d5d9da; padding: 9px 7px; width: 420px; }
+
+#instantform input[type=text]:focus, #instantform input[type=password]:focus { border-color: #b3d5eb; color: #444; }
+
+label { display: block; margin-top: 25px; margin-bottom: 4px; color: #444; font-weight: bold; font-size: 1.2em; }

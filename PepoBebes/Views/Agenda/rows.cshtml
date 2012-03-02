@@ -1,0 +1,12 @@
+﻿@model IEnumerable<PepoBebes.Models.HistorialAgenda>
+@foreach (var item in Model)
+{
+    <tr id='@(item.historialAgendaID)'>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+    </tr>
+}

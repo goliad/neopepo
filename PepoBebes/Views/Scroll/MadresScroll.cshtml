@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PepoBebes.Models.Madre>
+@{
+    ViewBag.Title = "MadresScroll";
+    Layout = null;
+}
+<h2>
+    MadresScroll</h2>
+<table id="myDataTableMadresScroll">
+    <thead>
+        <tr>
+            <th>
+                dni
+            </th>
+            <th>
+                apellido
+            </th>
+            <th>
+                nombre
+            </th>
+            <th>
+                ver
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var oTable = $('#myDataTableMadresScroll').dataTable({
+            "bInfo": false,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bSort": false,
+            "sPaginationType": "full_numbers",
+            "bServerSide": true,
+            "sAjaxSource": "/PepoBebes/Scroll/AjaxHandlerMadres",
+            "bProcessing": true,            
+            "oLanguage": {
+                        "sProcessing":   "Procesando...",
+                        "sLengthMenu":   "Mostrar _MENU_ registros",
+                        "sZeroRecords":  "No se encontro :( . Intente nuevamente.",
+                        "sInfo":         "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
+                        "sInfoEmpty":    "Mostrando desde 0 hasta 0 de 0 registros",
+                        "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
+                        "sInfoPostFix":  "",
+                        "sSearch":       "Buscar DNI:",
+                        "sUrl":          "",
+                        "oPaginate": {
+                                        "sFirst":    "Primero",
+                                        "sPrevious": "Anterior",
+                                        "sNext":     "Siguiente",
+                                        "sLast":     "Último"
+                                    }
+                        },
+            "aoColumns": [
+                        { "sName": "dni" },
+			            { "sName": "apellido" },
+                        { "sName": "nombre" },
+                        { "sName": "ver",
+                            "bSearchable": false,
+                            "bSortable": false,
+                            "fnRender": function (oObj) {
+                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/PepoBebes/Agenda/VerMadre/' + oObj.aData[3] + '">Ver</a>';
+                            }
+                        }
+		            ],
+        });
+    });
+</script>
+

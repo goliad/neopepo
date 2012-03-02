@@ -1,0 +1,131 @@
+﻿@model PepoBebes.Models.HistorialNeo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>HistorialNeo</legend>
+
+        @Html.HiddenFor(model => model.historialNeoID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fecha)
+            @Html.ValidationMessageFor(model => model.fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tipo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tipo)
+            @Html.ValidationMessageFor(model => model.tipo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaIngreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaIngreso)
+            @Html.ValidationMessageFor(model => model.fechaIngreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pesoNeo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pesoNeo)
+            @Html.ValidationMessageFor(model => model.pesoNeo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lugarNacimiento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lugarNacimiento)
+            @Html.ValidationMessageFor(model => model.lugarNacimiento)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.derivacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.derivacion)
+            @Html.ValidationMessageFor(model => model.derivacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.medicoReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.medicoReceptor)
+            @Html.ValidationMessageFor(model => model.medicoReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.diagnostico)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.diagnostico)
+            @Html.ValidationMessageFor(model => model.diagnostico)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaEgreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaEgreso)
+            @Html.ValidationMessageFor(model => model.fechaEgreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.medicoAlta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.medicoAlta)
+            @Html.ValidationMessageFor(model => model.medicoAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.responsable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.responsable)
+            @Html.ValidationMessageFor(model => model.responsable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.observaciones)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.observaciones)
+            @Html.ValidationMessageFor(model => model.observaciones)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.bebeID, "bebe")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("bebeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.bebeID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

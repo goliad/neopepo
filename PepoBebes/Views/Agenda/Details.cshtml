@@ -1,0 +1,36 @@
+﻿@model PepoBebes.Models.Agenda
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AgendaLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Agenda</legend>
+
+    <div class="display-label">fecha</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">bebe</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bebe.lugarNacimiento)
+    </div>
+
+    <div class="display-label">notas</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.notas)
+    </div>
+
+    <div class="display-label">Status</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status.description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.agendaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

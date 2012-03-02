@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PepoBebes.Models.Log_Bebe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LogsLayout.cshtml";
+}
+
+<table>
+    <tr>
+        <th>
+            usuario
+        </th>
+        <th>
+            fecha
+        </th>
+        <th>
+            accion
+        </th>
+        <th>
+            Bebe
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idBebe)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

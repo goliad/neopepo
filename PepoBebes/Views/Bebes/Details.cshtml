@@ -1,0 +1,71 @@
+﻿@model PepoBebes.Models.Bebe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ABMLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Bebe</legend>
+
+    <div class="display-label">dni</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dni)
+    </div>
+
+    <div class="display-label">nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">vive</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.vive)
+    </div>
+
+    <div class="display-label">fechaNacimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaNacimiento)
+    </div>
+
+    <div class="display-label">sexo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.sexo.descripcion)
+    </div>
+
+    <div class="display-label">edadGestacional</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.edadGestacional)
+    </div>
+
+    <div class="display-label">peso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.peso)
+    </div>
+
+    <div class="display-label">hc</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hc)
+    </div>
+
+    <div class="display-label">mamaCanguro</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mamaCanguro)
+    </div>
+
+    <div class="display-label">riesgo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.riesgo.descripcion)
+    </div>
+
+    <div class="display-label">madre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.madre.dni)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.bebeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

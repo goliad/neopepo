@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PepoBebes.Models.Agenda>
+@{
+    Layout = null;
+}
+<p>
+    @Html.ActionLink("Agregar Evento", "Create","Agenda")
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>
+                fecha
+            </th>
+            <th>
+                bebe
+            </th>
+            <th>
+                notas
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bebe.madre.dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.notas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit","Agenda", new { id = item.agendaID },null) |
+                    @Html.ActionLink("Details", "Details","Agenda", new { id = item.agendaID },null) |
+                    @Html.ActionLink("Delete", "Delete", "Agenda", new { id = item.agendaID },null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

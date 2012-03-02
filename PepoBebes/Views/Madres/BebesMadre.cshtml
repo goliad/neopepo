@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PepoBebes.Models.Bebe>
+@{
+    Layout = null;
+}
+<table>
+    <thead>
+        <tr>
+            <th>
+                Editar
+            </th>
+            <th>
+                fechaNacimiento
+            </th>
+            <th>
+                sexo
+            </th>
+            <th>
+                edadGestacional
+            </th>
+            <th>
+                peso
+            </th>
+            <th>
+                mamaCanguro
+            </th>
+            <th>
+                hc
+            </th>
+            <th>
+                riesgo
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+    
+            <tr>
+                <th>
+                    Editar
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.fechaNacimiento)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.sexo.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.edadGestacional)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.peso)
+                </th>            
+                <th>
+                    @Html.DisplayFor(modelItem => item.mamaCanguro)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.hc)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.riesgo.descripcion)
+                </th>                
+                <th>
+                    @Html.DisplayFor(modelItem => item.madre.dni)
+                </th>
+                
+            </tr>
+        }
+    </tbody>
+</table>

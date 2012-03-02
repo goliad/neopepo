@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PepoBebes.Models.HistorialNeo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            fecha
+        </th>
+        <th>
+            tipo
+        </th>
+        <th>
+            fechaIngreso
+        </th>
+        <th>
+            pesoNeo
+        </th>
+        <th>
+            lugarNacimiento
+        </th>
+        <th>
+            derivacion
+        </th>
+        <th>
+            medicoReceptor
+        </th>
+        <th>
+            diagnostico
+        </th>
+        <th>
+            fechaEgreso
+        </th>
+        <th>
+            medicoAlta
+        </th>
+        <th>
+            responsable
+        </th>
+        <th>
+            observaciones
+        </th>
+        <th>
+            bebe
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pesoNeo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lugarNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.derivacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medicoReceptor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diagnostico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaEgreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medicoAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.responsable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bebe.dni)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.historialNeoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.historialNeoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.historialNeoID })
+        </td>
+    </tr>
+}
+
+</table>

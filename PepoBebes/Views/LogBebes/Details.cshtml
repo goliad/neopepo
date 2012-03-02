@@ -1,0 +1,35 @@
+﻿@model PepoBebes.Models.Log_Bebe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LogsLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Log_Bebe</legend>
+
+    <div class="display-label">usuario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario)
+    </div>
+
+    <div class="display-label">fecha</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">accion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.accion)
+    </div>
+
+    <div class="display-label">idBebe</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bebe.bebeID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Volver", "Index")
+</p>

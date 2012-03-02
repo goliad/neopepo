@@ -1,0 +1,106 @@
+﻿@model PepoBebes.Models.Madre
+
+@{
+    ViewBag.Title = "Crear Madre";
+    Layout = "~/Views/Shared/_ABMLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Madre</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dni)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dni)
+            @Html.ValidationMessageFor(model => model.dni)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.apellido)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.apellido)
+            @Html.ValidationMessageFor(model => model.apellido)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaNacimiento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaNacimiento)
+            @Html.ValidationMessageFor(model => model.fechaNacimiento)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.edad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.edad)
+            @Html.ValidationMessageFor(model => model.edad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.domicilio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.domicilio)
+            @Html.ValidationMessageFor(model => model.domicilio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.localidad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.localidad)
+            @Html.ValidationMessageFor(model => model.localidad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.departamentoID, "departamento")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("departamentoID", String.Empty)
+            @Html.ValidationMessageFor(model => model.departamentoID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.telefono)
+            @Html.ValidationMessageFor(model => model.telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Agregar Bebe", "Create","Bebes")
+</div>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>

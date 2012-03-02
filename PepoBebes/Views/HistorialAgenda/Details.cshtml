@@ -1,0 +1,31 @@
+﻿@model PepoBebes.Models.HistorialAgenda
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ABMLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>HistorialAgenda</legend>
+
+    <div class="display-label">fecha</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">bebe</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bebe.dni)
+    </div>
+
+    <div class="display-label">descripcion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.historialAgendaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

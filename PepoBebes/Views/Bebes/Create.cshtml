@@ -1,0 +1,103 @@
+﻿@model PepoBebes.Models.Bebe
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_ABMLayout.cshtml";
+}
+<h2>
+    Create</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Bebe</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dni)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dni)
+            @Html.ValidationMessageFor(model => model.dni)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.vive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.vive)
+            @Html.ValidationMessageFor(model => model.vive)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaNacimiento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaNacimiento)
+            @Html.ValidationMessageFor(model => model.fechaNacimiento)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sexoID, "sexo")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("sexoID", String.Empty)
+            @Html.ValidationMessageFor(model => model.sexoID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.edadGestacional)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.edadGestacional)
+            @Html.ValidationMessageFor(model => model.edadGestacional)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.peso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.peso)
+            @Html.ValidationMessageFor(model => model.peso)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hc)
+            @Html.ValidationMessageFor(model => model.hc)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mamaCanguro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mamaCanguro)
+            @Html.ValidationMessageFor(model => model.mamaCanguro)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.riesgoID, "riesgo")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("riesgoID", String.Empty)
+            @Html.ValidationMessageFor(model => model.riesgoID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.madreID, "madre")
+        </div>
+        <div class="editor-field">
+            @*            @Html.DropDownList("madreID", String.Empty)
+            @Html.ValidationMessageFor(model => model.madreID)*@
+            @Html.HiddenFor(model => model.madreID)
+            @Html.ValidationMessageFor(model => model.madreID)
+            @Html.DisplayFor(model => model.madre.dni)
+            @Html.DisplayFor(model => model.madre.nombre)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
