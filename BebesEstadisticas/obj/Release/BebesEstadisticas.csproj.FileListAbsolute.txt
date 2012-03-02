@@ -1,5 +1,0 @@
-H:\NeoPepoGit\PepoBebesGit\BebesEstadisticas\bin\BebesEstadisticas.dll
-H:\NeoPepoGit\PepoBebesGit\BebesEstadisticas\bin\BebesEstadisticas.pdb
-H:\NeoPepoGit\PepoBebesGit\BebesEstadisticas\obj\Release\ResolveAssemblyReference.cache
-H:\NeoPepoGit\PepoBebesGit\BebesEstadisticas\obj\Release\BebesEstadisticas.dll
-H:\NeoPepoGit\PepoBebesGit\BebesEstadisticas\obj\Release\BebesEstadisticas.pdb
