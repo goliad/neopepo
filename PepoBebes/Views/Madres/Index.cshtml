@@ -63,11 +63,11 @@
             "bSort": false,
             "sPaginationType": "full_numbers",
             "bServerSide": true,
-            "sAjaxSource": "/PepoBebes/Madres/AjaxHandler",
+            "sAjaxSource": "/Madres/AjaxHandler",
             "bProcessing": true,            
             "sDom": 'T<"clear">lfrtip',
             "oTableTools": {
-                        "sSwfPath": "/PepoBebes/Content/DataTables-1.9.0/extras/TableTools/media/swf/copy_cvs_xls_pdf.swf",
+                        "sSwfPath": "/Content/DataTables-1.9.0/extras/TableTools/media/swf/copy_cvs_xls_pdf.swf",
 			            "aButtons": [
 				            {
 					            "sExtends": "copy",
@@ -87,7 +87,7 @@
             "oLanguage": {
                         "sProcessing":   "Procesando...",
                         "sLengthMenu":   "Mostrar _MENU_ registros",
-                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/PepoBebes/Madres/Create\">Crear Madre</a>",
+                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/Madres/Create\">Crear Madre</a>",
                         "sInfo":         "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
                         "sInfoEmpty":    "Mostrando desde 0 hasta 0 de 0 registros",
                         "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
@@ -106,12 +106,12 @@
                             "bSearchable": false,
                             "bSortable": false,
                             "fnRender": function (oObj) {
-                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/PepoBebes/Madres/Edit/' + oObj.aData[0] + '">Editar</a>';
+                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/Madres/Edit/' + oObj.aData[0] + '">Editar</a>';
                             }
                         },
                         { "sName": "Agregar",                        
                             "fnRender": function (oObj) {
-                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/PepoBebes/Bebes/Create/' + oObj.aData[1] + '">Agregar Bebe</a>';
+                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/Bebes/Create/' + oObj.aData[1] + '">Agregar Bebe</a>';
                             }
                         },
                         { "sName": "dni" },

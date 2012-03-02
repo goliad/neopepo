@@ -1,0 +1,10 @@
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\PepoBebes.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\PepoBebes.pdb
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\Devtalk.EF.CodeFirst.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\EntityFramework.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\Microsoft.Web.Infrastructure.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\WebActivator.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\bin\EntityFramework.xml
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\obj\Debug\ResolveAssemblyReference.cache
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\obj\Debug\PepoBebes.dll
+H:\NeoPepoGit\PepoBebesGit\PepoBebes\obj\Debug\PepoBebes.pdb

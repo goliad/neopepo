@@ -78,12 +78,12 @@
             "bSort": false,
             "sPaginationType": "full_numbers",
             "bServerSide": true,
-            "sAjaxSource": "/PepoBebes/Scroll/AjaxHandler",
+            "sAjaxSource": "/Scroll/AjaxHandler",
             "bProcessing": true,
             "oLanguage": {
                         "sProcessing":   "Procesando...",
                         "sLengthMenu":   "Mostrar _MENU_ registros",
-                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/PepoBebes/Bebes/Create\">Crear Madre</a>",
+                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/Bebes/Create\">Crear Madre</a>",
                         "sInfo":         "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
                         "sInfoEmpty":    "Mostrando desde 0 hasta 0 de 0 registros",
                         "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
@@ -105,12 +105,12 @@
                             "bSearchable": false,
                             "bSortable": false,
                             "fnRender": function (oObj) {
-                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/PepoBebes/Agenda/Edit/' + oObj.aData[3] + '">Ver-></a>';
+                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/Agenda/Edit/' + oObj.aData[3] + '">Ver-></a>';
                             }
                         },
                         { "sName": "completar",
                             "fnRender": function (oObj) {
-                                return '<a class=\"completadoLink\" href=\"/PepoBebes/Agenda/Completar/' + oObj.aData[4] + '" onclick=\"javascript:return confirm(\'Desea completar este evento?\')\" >completar</a>';
+                                return '<a class=\"completadoLink\" href=\"/Agenda/Completar/' + oObj.aData[4] + '" onclick=\"javascript:return confirm(\'Desea completar este evento?\')\" >completar</a>';
                             }
                         }
 		            ],

@@ -5,7 +5,7 @@
 * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
-var tb_pathToImage = "../../PepoBebes/Content/loadingAnimation.gif";
+var tb_pathToImage = "../../Content/loadingAnimation.gif";
 
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 

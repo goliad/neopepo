@@ -67,12 +67,12 @@
             "bSort": false,
             "sPaginationType": "full_numbers",
             "bServerSide": true,
-            "sAjaxSource": "/PepoBebes/Bebes/AjaxHandler",
+            "sAjaxSource": "/Bebes/AjaxHandler",
             "bProcessing": true,
             "oLanguage": {
                         "sProcessing":   "Procesando...",
                         "sLengthMenu":   "Mostrar _MENU_ registros",
-                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/PepoBebes/Bebes/Create\">Crear Madre</a>",
+                        "sZeroRecords":  "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/Bebes/Create\">Crear Madre</a>",
                         "sInfo":         "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
                         "sInfoEmpty":    "Mostrando desde 0 hasta 0 de 0 registros",
                         "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
@@ -91,7 +91,7 @@
                             "bSearchable": false,
                             "bSortable": false,
                             "fnRender": function (oObj) {
-                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/PepoBebes/Bebes/Edit/' + oObj.aData[0] + '">Editar-></a>';
+                                return '<a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/Bebes/Edit/' + oObj.aData[0] + '">Editar-></a>';
                             }
                         },
                         { "sName": "dni" },
