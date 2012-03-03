@@ -86,7 +86,7 @@ namespace PepoBebes.Controllers
         public ActionResult AjaxHandler(JQueryDataTableParamModel param)
         {
             //Filtra los eventos nuevos
-            var allAgendas = db.Agenda.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddMonths(-1)).ToList();
+            var allAgendas = db.Agenda.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddDays(-7)).ToList();
             
             IEnumerable<Agenda> filteredAgendas;
             //Check whether the Agendas should be filtered by keyword

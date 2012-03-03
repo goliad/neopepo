@@ -30,8 +30,8 @@
 </head>
 <body>
     <div class="page">
-        <div id="logindisplay">
-            @Html.ActionLink("Home", "Inicio", "Agenda")
+        <div id="logindisplay">            
+            @Ajax.ActionLink("Home", "Inicio", "Agenda", new AjaxOptions { UpdateTargetId = "contenido", LoadingElementId = "cargando" })
             @Html.ActionLink("Carga", "Index", "Madres")
             @Html.Partial("_LogOnPartial")
         </div>

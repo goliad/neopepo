@@ -182,7 +182,11 @@
     <Content Include="Content\DataTables-1.9.0\media\images\sort_desc_disabled.png" />
     <Content Include="Content\images\agenda-icon_512-white.png" />
     <Content Include="Content\images\babyfemale.png" />
+    <Content Include="Content\images\babyfemalemucho.png" />
+    <Content Include="Content\images\babyfemalepoco.png" />
     <Content Include="Content\images\babymale.png" />
+    <Content Include="Content\images\babymalemucho.png" />
+    <Content Include="Content\images\babymalepoco.png" />
     <Content Include="Content\images\babysuccess.jpg" />
     <Content Include="Content\images\bebeEnfermeraIcon.jpg" />
     <Content Include="Content\images\calendar_icon.png" />
