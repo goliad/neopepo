@@ -15,7 +15,7 @@ namespace PepoBebes.Controllers
         // GET: /Scroll/
         public ViewResult AgendaScroll()
         {
-            return View(db.Agenda.ToList());
+            return View(db.Agenda.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddDays(-7)).ToList());
         }
 
         public ActionResult MadresScroll()
