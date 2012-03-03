@@ -17,7 +17,7 @@ namespace PepoBebes.Controllers
         //
         // GET: /Madres/
 
-        //[Authorize(Roles = "administrador ")] //No permite el acceso a carga de datos si no tiene el rol administrador
+        [Authorize(Roles = "administrador ")] //No permite el acceso a carga de datos si no tiene el rol administrador
         public ViewResult Index()
         {
             var madres = db.Madres.Include(m => m.departamento);

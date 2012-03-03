@@ -12,16 +12,16 @@ namespace PepoBebes.Models
         public int bebeID { get; set; }
 
 
-        [MaxLength(100)]//Cuando tenga se le carga
+        //[MaxLength(100)]//Cuando tenga se le carga
         public string dni { get; set; }
 
-        [MaxLength(100)]//Cuando tenga se le carga o edita
+        //[MaxLength(100)]//Cuando tenga se le carga o edita
         public string nombre { get; set; }
 
-        [MaxLength(2)]//Si o No
+        //[MaxLength(2)]//Si o No
         public String vive { get; set; }
 
-        [Required(ErrorMessage = "Debe ingresar")]
+        //[Required(ErrorMessage = "Debe ingresar")]
         [DataType(DataType.Date)]
         public DateTime fechaNacimiento { get; set; }
 
@@ -29,21 +29,21 @@ namespace PepoBebes.Models
         public int sexoID { get; set; }
         public virtual Sexos sexo { get; set; }
 
-        [Range(26, 43)]
+        //[Range(26, 43)]
         public int edadGestacional { get; set; }
 
-        [Required]
-        [Range(100, 8000)]
+        //[Required]
+        //[Range(100, 8000)]
         public double peso { get; set; }
 
 
-        [MaxLength(100)]
-        [RegularExpression(@"[0-9]+",
-            ErrorMessage = "Error Historia Clinica.")]
+        //[MaxLength(100)]
+        //[RegularExpression(@"[0-9]+",
+        //    ErrorMessage = "Error Historia Clinica.")]
         public string hc { get; set; }
 
 
-        [MaxLength(2)]//Si o No
+        //[MaxLength(2)]//Si o No
         public string mamaCanguro { get; set; }
 
         //Tip: Agregar Historial de riesgo, historial de peso.

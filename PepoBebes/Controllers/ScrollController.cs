@@ -24,7 +24,7 @@ namespace PepoBebes.Controllers
         }
 
         //-----------------------------------------------------
-        // Codigo para el Data Table 
+        // Codigo para el Data Table Madres en el scroll de agenda
         public ActionResult AjaxHandlerMadres(JQueryDataTableParamModel param)
         {
             var allMadres = db.Madres.ToList();
@@ -86,7 +86,7 @@ namespace PepoBebes.Controllers
         public ActionResult AjaxHandler(JQueryDataTableParamModel param)
         {
             //Filtra los eventos nuevos
-            var allAgendas = db.Agenda.Where(a => a.Status.description == "Nuevo").ToList();
+            var allAgendas = db.Agenda.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddMonths(-1)).ToList();
             
             IEnumerable<Agenda> filteredAgendas;
             //Check whether the Agendas should be filtered by keyword

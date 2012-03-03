@@ -7,25 +7,20 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using PepoBebes.Models;
 
 namespace PepoBebes
 {
     public class ExcelImport
     {
+        private Context db = new Context();
 
         // Get the row counts in SQL Server table.
         public int GetRowCounts()
         {
             int iRowCount = 0;
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLServer2005DBConnectionString"].ToString()))
-            {
-                SqlCommand cmd = new SqlCommand("select count(*) from BEBES", conn);
-                conn.Open();
-
-                // Execute the SqlCommand and get the row counts.
-                iRowCount = (int)cmd.ExecuteScalar();
-            }
+            iRowCount = db.Bebes.Count();
 
             return iRowCount;
         }
@@ -52,89 +47,62 @@ namespace PepoBebes
         {
             DataTable dtExcel = RetrieveData(strExcelConn);
             int iStartCount = GetRowCounts();
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLServer2005DBConnectionString"].ToString()))
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                conn.Open();
-                string strSQLcmd = "";
                 int cantFilasExcel = dtExcel.Rows.Count;
                 for (int i = 0; i < cantFilasExcel; i++)
                 {
-                    strSQLcmd =
-                    "IF (SELECT COUNT(*)FROM MADRES WHERE dni = '" + dtExcel.Rows[i]["DNI"] + "') = 0 " +
-                        " begin " +
-
-                        "IF (SELECT COUNT(*)FROM DEPARTAMENTOS WHERE departamento = '" + dtExcel.Rows[i]["departamento"] + "') = 0 " +
-                        " begin " +
-                        " INSERT INTO DEPARTAMENTOS(departamento) VALUES('" +
-                        dtExcel.Rows[i]["departamento"] + "') " +
-                        " end " +
-                    " else " +
-                        " begin " +
-                            " UPDATE DEPARTAMENTOS " +
-                            " SET [cantEst] = [cantEst] + 1 " +
-                            " WHERE (departamento = '" + dtExcel.Rows[i]["departamento"] + "') " +
-                        " end " +
-
-
-                        " declare @idDepartamento as int " +
-                        " declare @idLocalidad as int " +
-                        " SELECT @idDepartamento = [id] FROM DEPARTAMENTOS WHERE departamento = '" +
-                        dtExcel.Rows[i]["departamento"] + "' " +
-
-
-                        " INSERT INTO MADRES(dni,apellido,nombre,fechaNacimiento,edad,domicilio,localidad,departamento,telefono)"+ 
-                        " VALUES('" + 
-                        dtExcel.Rows[i]["DNI"] +"','"+
-                        dtExcel.Rows[i]["Apellido"] +"','"+
-                        dtExcel.Rows[i]["Nombre"] +"','"+
-                        refineFNac(dtExcel.Rows[i]["Edad"]) + "'," +
-                        refineEdad(dtExcel.Rows[i]["Edad"]) + ",'" +
-                        dtExcel.Rows[i]["calle"] +" " + 
-                        dtExcel.Rows[i]["N°"] +"  "+ refineBarrio(dtExcel.Rows[i]["Barrio"]) + "',@idLocalidad,@idDepartamento,'"+
-                        dtExcel.Rows[i]["Telefono"] + "') " +                               
-                        " end " +
-                    " else " +
-                        " begin " +
-                            " UPDATE MADRES " +
-                            " SET [cantHijos] = [cantHijos] + 1 " +
-                            " WHERE (dni = '" + dtExcel.Rows[i]["DNI"] + "') " +
-                        " end " +
-                    " declare @idMadre as int " +
-                    " SELECT @idMadre = [id] FROM MADRES WHERE dni = '"+dtExcel.Rows[i]["DNI"]+"' "+
-
-                    " INSERT INTO BEBES (fechaNacimiento,fechaIngreso,sexo,edadGestacional,peso,diagnostico,lugarNacimiento,derivacion,mamaCanguro,observaciones,hc,idMadre) VALUES ('" +
-                    dtExcel.Rows[i]["fechaNacimiento"] + "','" +
-                    dtExcel.Rows[i]["fechaIngreso"] + "'," +
-                    refineSexo(dtExcel.Rows[i]["sexo"]) + "," +
-                    refineEG(dtExcel.Rows[i]["EG"]) + "," +
-                    refinePeso(dtExcel.Rows[i]["peso"]) +",'"+
-                    dtExcel.Rows[i]["diagnostico"] + "','" +
-                    dtExcel.Rows[i]["lugarNacimiento"] + "','" +
-                    dtExcel.Rows[i]["derivacion"] + "'," +
-                    refineMamaCanguro(dtExcel.Rows[i]["mamaCanguro"]) + ",'" +
-                    dtExcel.Rows[i]["observaciones"] + "','" +
-                    dtExcel.Rows[i]["hc"]+ "'," +
-                    "@idMadre" + ");" +
-                    " declare @dateIter as DateTime; "+
-                    " declare @dateFin as DateTime; " +
-                    " declare @dateInicio as DateTime; " +
-                    " set @dateFin = DATEADD (month , 24 ,'"+
-                    dtExcel.Rows[i]["fechaNacimiento"] + "')"+
-                    " set @dateIter ='"+dtExcel.Rows[i]["fechaNacimiento"] +"'"+
-                    " set @dateInicio ='" + dtExcel.Rows[i]["fechaNacimiento"] + "'" +
-
-                    " WHILE (@dateIter BETWEEN @dateInicio AND @dateFin )" +
-                        " BEGIN"+
-                        " INSERT INTO AGENDA(fecha,bebeID) VALUES (" +
-                        " @dateIter,IDENT_CURRENT('BEBES')) "+
-                        " set @dateIter =DATEADD (month , 1 , @dateIter)" +
-                        " END";
-
-                    cmd.CommandText = strSQLcmd;
-                    cmd.ExecuteNonQuery();
-                }
+                    Madre m = new Madre
+                    {
+                        dni = Convert.ToString(dtExcel.Rows[i]["DNI"]),
+                        apellido =Convert.ToString(dtExcel.Rows[i]["Apellido"]),
+                        nombre = Convert.ToString(dtExcel.Rows[i]["Nombre"]),
+                        fechaNacimiento = refineFNac(dtExcel.Rows[i]["Edad"]),
+                        edad = Convert.ToInt32(dtExcel.Rows[i]["Edad"]),
+                        domicilio = Convert.ToString(dtExcel.Rows[i]["domicilio"]),
+                        localidad = Convert.ToString(dtExcel.Rows[i]["localidad"]),
+                        departamento = buscarDepartamento((string)dtExcel.Rows[i]["departamento"]),
+                        email = "(sin dato)",
+                        telefono=Convert.ToString(dtExcel.Rows[i]["telefono"])
+                    };
+                    db.Madres.Add(m);
+                    Bebe b = new Bebe
+                    {
+                        madreID = m.madreID,
+                        madre = m,
+                        fechaNacimiento = Convert.ToDateTime(dtExcel.Rows[i]["fechaNacimiento"]),
+                        dni="(sin dato)",
+                        vive="Si",
+                        nombre = Convert.ToString(dtExcel.Rows[i]["bebe"]),
+                        sexo = buscarSexo(Convert.ToString(dtExcel.Rows[i]["sexo"])),
+                        edadGestacional = Convert.ToInt32(dtExcel.Rows[i]["EG"]),
+                        peso = Convert.ToInt32(dtExcel.Rows[i]["peso"]),
+                        hc = Convert.ToString(dtExcel.Rows[i]["hc"]),
+                        mamaCanguro = Convert.ToString(dtExcel.Rows[i]["mamaCanguro"]),
+                        riesgo = db.Riesgos.Find(1)
+                    }; 
+                    db.Bebes.Add(b);
+                    HistorialNeo h = new HistorialNeo
+                    {
+                        fecha = DateTime.Today,
+                        tipo = "Ingreso",
+                        fechaIngreso = Convert.ToDateTime(dtExcel.Rows[i]["fechaIngreso"]),
+                        pesoNeo = Convert.ToInt32(dtExcel.Rows[i]["peso"]),
+                        lugarNacimiento = Convert.ToString(dtExcel.Rows[i]["lugarNacimiento"]),
+                        derivacion = Convert.ToString(dtExcel.Rows[i]["derivacion"]),
+                        medicoReceptor = "(sin dato)",
+                        diagnostico = Convert.ToString(dtExcel.Rows[i]["diagnostico"]),
+                        fechaEgreso = DateTime.Today,
+                        medicoAlta = "(sin dato)",
+                        responsable = Convert.ToString(dtExcel.Rows[i]["Alta"]),
+                        observaciones = Convert.ToString(dtExcel.Rows[i]["observaciones"]),
+                        bebe=b
+                        
+                    };
+                    
+                    db.HistorialNeo.Add(h);
+                    agendar18(b);//Agendar los 18 eventos para el bebe
+                    db.SaveChanges();
+                    guardarlog(b, "crear");//Guarda el log del usuario
+                    db.SaveChanges();
             }
 
             // Get the row counts after importing.
@@ -143,6 +111,33 @@ namespace PepoBebes
             return iEndCount - iStartCount;
         }
 
+        void guardarlog(Bebe bebe, string accion)
+        {
+            Log_Bebe lb = new Log_Bebe
+            {
+                usuario = "excelImport",
+                fecha = DateTime.Now,
+                idBebe = bebe.bebeID,
+                accion = accion
+            };
+            db.Log_Bebes.Add(lb);
+        }
+
+        public void agendar18(Bebe bebe)
+        {
+            DateTime fechaAgenda = bebe.fechaNacimiento;
+            for (int i = 0; i < 18; i++)
+            {
+                Agenda ag18 = new Agenda
+                {
+                    bebeID = bebe.bebeID,
+                    fecha = fechaAgenda,
+                    StatusID = 1
+                };
+                db.Agenda.Add(ag18);
+                fechaAgenda = fechaAgenda.AddMonths(1);
+            }
+        }
         private object refinePeso(object p)
         {
             if (String.IsNullOrEmpty(p.ToString()))
@@ -160,11 +155,11 @@ namespace PepoBebes
             return eg;
         }
 
-        private object refineFNac(object d)
+        private DateTime refineFNac(object d)
         {
             if (String.IsNullOrEmpty(d.ToString()))
             {
-                return DateTime.Now.ToString();
+                return DateTime.Today;
             }
             int a = 0;
             a = int.Parse(d.ToString());
@@ -180,8 +175,47 @@ namespace PepoBebes
             {
                 return 0;
             }
-            return d;
+            return d.ToString();
         }
+
+        private Departamentos buscarDepartamento(string strDepartamento) {
+            var dep = db.Departamentos.ToArray();            
+            for (int i = 0; i < dep.Length; i++)
+            {
+                if (dep[i].descripcion == strDepartamento)
+                {
+                    return dep[i];
+                }
+            }
+            return db.Departamentos.Find(1);
+        }
+
+        private Sexos buscarSexo(string strSexo)
+        {
+            var s = db.Sexos.ToArray();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i].descripcion == strSexo)
+                {
+                    return s[i];
+                }
+            }
+            return db.Sexos.Find(3);
+        }
+
+        private Riesgos buscarRiesgo(string strRiesgo)
+        {
+            var r = db.Riesgos.ToArray();
+            for (int i = 0; i < r.Length; i++)
+            {
+                if (r[i].descripcion == strRiesgo)
+                {
+                    return r[i];
+                }
+            }
+            return db.Riesgos.Find(1);
+        }
+
 
         private object refineBarrio(object b)
         {
@@ -192,6 +226,23 @@ namespace PepoBebes
             return "B°: "+b.ToString();
         }
 
+        private object refineStr(object str)
+        {
+            if (String.IsNullOrEmpty(str.ToString()))
+            {
+                return "(sin dato)";
+            }
+            return str.ToString();
+        }
+
+        private object refineDate(object d)
+        {
+            if (String.IsNullOrEmpty(d.ToString()))
+            {
+                return DateTime.Now.ToString();
+            }
+            return d;
+        }
 
         private object refineSexo(object s)
         {

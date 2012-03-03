@@ -1,52 +1,6 @@
-﻿@model IEnumerable<PepoBebes.Models.Agenda>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_AgendaLayout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            fecha
-        </th>
-        <th>
-            bebe
-        </th>
-        <th>
-            notas
-        </th>
-        <th>
-            Status
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bebe.madre.dni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.notas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.agendaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.agendaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.agendaID })
-        </td>
-    </tr>
-}
-
-</table>
+total eventos: @ViewBag.Message

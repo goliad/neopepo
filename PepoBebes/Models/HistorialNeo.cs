@@ -13,40 +13,40 @@ namespace PepoBebes.Models
         [DataType(DataType.Date)]
         public DateTime fecha { get; set; }
 
-        [MaxLength(10)]
+        //[MaxLength(10)]
         public string tipo { get; set; } //Ingreso o Reingreso
 
-        [Required]
-        [DataType(DataType.Date)]
+        //[Required]
+        //[DataType(DataType.Date)]
         public DateTime fechaIngreso { get; set; }
 
-        [Required]
-        [Range(100, 8000)]
+        //[Required]
+        //[Range(100, 8000)]
         public double pesoNeo { get; set; }
 
-        [MaxLength(100)]
+        //[MaxLength(100)]
         public string lugarNacimiento { get; set; }
 
-        [MaxLength(100)]
+        //[MaxLength(100)]
         public string derivacion { get; set; }
 
-        [MaxLength(100)]
+        //[MaxLength(100)]
         public string medicoReceptor { get; set; }
 
-        [MaxLength(250)]
+        //[MaxLength(250)]
         public string diagnostico { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime fechaEgreso { get; set; }
         
-        [MaxLength(100)]
+        //[MaxLength(100)]
         public string medicoAlta { get; set; }
         
-        [MaxLength(250)]
+        //[MaxLength(250)]
         public string responsable { get; set; }//Persona que lo retira
 
 
-        [MaxLength(250)]
+        //[MaxLength(250)]
         public string observaciones { get; set; }
 
         public int bebeID { get; set; }
