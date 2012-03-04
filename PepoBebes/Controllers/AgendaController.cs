@@ -16,10 +16,11 @@ namespace PepoBebes.Controllers
         //
         // GET: /Agenda/
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            var agenda = db.Agenda.Include(a => a.Status).Include(a => a.bebe);
-            return View(agenda.ToList());
+            DateTime semanaAntes = DateTime.Today.AddDays(-7);
+            ViewBag.Message = db.Agenda.OrderBy(a => a.fecha).Where(a => a.Status.description == "Nuevo").Where(a => a.Status.description == "Nuevo" && (semanaAntes < a.fecha)&& (a.fecha<DateTime.Today)).ToList().Count.ToString();
+            return View("Index");
         }
 
         //
@@ -153,7 +154,8 @@ namespace PepoBebes.Controllers
 
         public ActionResult Inicio()
         {
-            ViewBag.Message = db.Agenda.OrderBy(a => a.fecha).Where(a => a.Status.description == "Nuevo").Where(a => a.fecha <= DateTime.Today).ToList().Count.ToString();
+            DateTime semanaAntes = DateTime.Today.AddDays(-7);
+            ViewBag.Message = db.Agenda.OrderBy(a => a.fecha).Where(a => a.Status.description == "Nuevo").Where(a => a.Status.description == "Nuevo" && (semanaAntes < a.fecha) && (a.fecha < DateTime.Today)).ToList().Count.ToString();
             return PartialView("Inicio");
         }
 
