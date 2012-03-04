@@ -146,8 +146,8 @@
                     </div>
                     <div class="display-label">
                         Observaciones</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe.historialNeo)
+                    <div class="display-field">                        
+                        @Html.DisplayFor(model => model.bebe.historialNeo.ToList().Last().observaciones)
                     </div>
                 </td>
                 <td>
