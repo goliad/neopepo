@@ -28,9 +28,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            if (item.fecha < DateTime.Today && item.Status.description == "Nuevo")
+            if (item.fecha < DateTime.Today && (item.Status.description == "Nuevo" || item.Status.description == "Completado"))
             {
-            <tr>
+            <tr style="background-color:@(item.Status.description == "Nuevo" ? "white":"gray")"  >
+            
                 <td>
                     @Html.DisplayFor(modelItem => item.fecha)
                 </td>
@@ -82,13 +83,18 @@
                     @*@Html.ActionLink("Ver", "Edit","Agenda", new { id = item.agendaID },null)*@
                 </td>
                 <td>
-                    @Html.ActionLink("Completado", "Completar", "Agenda", new { id = item.agendaID }, new { @class = "completadoLink", onClick = "javascript:return confirm('Desea completar este evento?')" })
+                    @if (item.Status.description == "Nuevo"){
+                        @Html.ActionLink("Completado", "Completar", "Agenda", new { id = item.agendaID }, new { @class = "completadoLink", onClick = "javascript:return confirm('Desea completar este evento?')" })
+                    }
                 </td>
             </tr>
             }
         }
     </tbody>
 </table>
+
+
+
 @*<script type="text/javascript">
     $(document).ready(function () {
         var oTable = $('#myDataTableAgendaScroll').dataTable({

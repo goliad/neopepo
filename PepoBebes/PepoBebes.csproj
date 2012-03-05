@@ -436,6 +436,8 @@
     <Content Include="Views\HistorialAgenda\Create.cshtml" />
     <Content Include="Views\HistorialAgenda\Edit.cshtml" />
     <Content Include="Views\HistorialAgenda\Delete.cshtml" />
+    <Content Include="Views\Madres\Consultas.cshtml" />
+    <Content Include="Views\Bebes\HistorialNeoBebe.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

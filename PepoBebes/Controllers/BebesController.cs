@@ -228,6 +228,12 @@ namespace PepoBebes.Controllers
             return View(agenda.ToList());
         }
 
+        public ActionResult HistorialNeoBebe(int id)
+        {
+            var historialNeo = db.HistorialNeo.Where(a => a.bebeID.Equals(id));
+            return View(historialNeo.ToList());
+        }
+
 
 
 

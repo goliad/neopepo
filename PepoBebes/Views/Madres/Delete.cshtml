@@ -61,6 +61,11 @@
         @Html.DisplayFor(model => model.email)
     </div>
 </fieldset>
+<div id="bebesMadre">
+    @Html.Action("BebesMadre", "Madres")
+</div>
+<br />
+<br />
 @using (Html.BeginForm()) {
     <p>
         <input type="submit" value="Delete" /> |

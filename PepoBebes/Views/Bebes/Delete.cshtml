@@ -66,6 +66,15 @@
         @Html.DisplayFor(model => model.madre.dni)
     </div>
 </fieldset>
+
+<div id="agendaBebe">   
+@Html.Action("AgendaBebe","Bebes")
+</div>
+<div id="historialNeoBebe">   
+@Html.Action("HistorialNeoBebe","Bebes")
+</div>
+
+
 @using (Html.BeginForm()) {
     <p>
         <input type="submit" value="Delete" /> |

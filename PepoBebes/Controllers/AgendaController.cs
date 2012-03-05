@@ -122,7 +122,7 @@ namespace PepoBebes.Controllers
             agenda.StatusID = 2;
             db.Entry(agenda).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Inicio", "Agenda");
+            return RedirectToAction("Index", "Agenda");
         }
 
 

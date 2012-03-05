@@ -8,11 +8,116 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @*@using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true)*@
-@*@Html.ActionLink("Agreagar", "Edit", "Bebes", new { id = Model.bebeID }, new { @class = "editLink2" })
+    @Html.ValidationSummary(true)*@ @*@Html.ActionLink("Agreagar", "Edit", "Bebes", new { id = Model.bebeID }, new { @class = "editLink2" })
 *@
 <div id="MadreAjax">
     @*@Ajax.ActionLink("Ajax Test", "Edit", "Madres", new { id = Model.bebe.madre.madreID }, new AjaxOptions { UpdateTargetId = "MadreAjax" })*@
+    <fieldset>
+        <legend>Bebe</legend>
+        <table>
+            <tr>
+                <td style="width:210px" >
+                    <div class="display-field" style="text-align: left; margin=5px">
+                        @if (Model.bebe.sexo.descripcion == "Femenino")
+                        {
+                            if (Model.bebe.riesgo.descripcion == "Poco")
+                            { 
+                            <img src="@Url.Content("~/Content/images/babyfemalepoco.png")" width="200" height="200"  />
+                            }
+                            else
+                            {
+                                if (Model.bebe.riesgo.descripcion == "Mucho")
+                                {
+                            <img src="@Url.Content("~/Content/images/babyfemalemucho.png")"  width="200" height="200" />
+                                }
+                                else
+                                {
+                            <img src="@Url.Content("~/Content/images/babyfemale.png")"  width="200" height="200" />
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Model.bebe.riesgo.descripcion == "Poco")
+                            { 
+                            <img src="@Url.Content("~/Content/images/babymalepoco.png")"  width="200" height="200" />
+                            }
+                            else
+                            {
+                                if (Model.bebe.riesgo.descripcion == "Mucho")
+                                {
+                            <img src="@Url.Content("~/Content/images/babymalemucho.png")"  width="200" height="200" />
+                                }
+                                else
+                                {
+                            <img src="@Url.Content("~/Content/images/babymale.png")" width="200" height="200" />
+                                }
+                            }
+                        }
+                        <br />
+                    </div>
+                </td>
+                <td>
+                    <div class="display-label">
+                        Dni</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.dni)
+                    </div>
+                    <div class="display-label">
+                        Nombre</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.nombre)
+                    </div>
+                    <div class="display-label">
+                        HC</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.hc)
+                    </div>
+                    <div class="display-label">
+                        Fecha de Nacimiento</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.fechaNacimiento)
+                    </div>
+                    <div class="display-label">
+                        Edad:
+                    </div>
+                    <div class="display-field">
+                        @((int)(DateTime.Today.Subtract(Model.bebe.fechaNacimiento).TotalDays / 30))
+                        meses
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="display-label">
+                        Peso</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.peso) gm.
+                    </div>
+                    <div class="display-label">
+                        Edad Gestacional</div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.edadGestacional) semanas.
+                    </div>
+                    <div class="display-label">
+                        Mama Canguro:
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.bebe.mamaCanguro)
+                    </div>
+                    <div class="display-label">
+                        Historial Neo</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="historialNeoBebe">
+                        @Html.Action("HistorialNeoBebe", "Bebes", new { id = Model.bebeID })
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
     <fieldset>
         <legend>Madre</legend>
         <h2>
@@ -82,7 +187,7 @@
                                             <a href="@Url.Content("~/Establecimientos/EstablecimientosDpto/" + Model.bebe.madre.departamentoID.ToString() + "?height=500&width=500")" title="Establecimientos del Departamento: " class="thickbox">
                                                 Ver</a>
                                         </p>
-                                            <script src="@Url.Content("~/Scripts/thickbox.js")" type="text/javascript"></script>
+                                        <script src="@Url.Content("~/Scripts/thickbox.js")" type="text/javascript"></script>
                                     </div>
                                 </td>
                             </tr>
@@ -90,95 +195,13 @@
                     </div>
                 </td>
             </tr>
-        </table>
-    </fieldset>
-    <fieldset>
-        <legend>Bebe</legend>
-        <table>
             <tr>
-                <td>
-                    <div class="display-label">
-                        Peso</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe.peso) gm.
-                    </div>
-                    <div class="display-label">
-                        Edad Gestacional</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe.edadGestacional) semanas.
-                    </div>
-                    <div class="display-label">
-                        Diagnostico Presuntivo</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe)
-                    </div>
-                    <div class="display-label">
-                        Historia Clinica</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe.hc)
-                    </div>
-                    <div class="display-label">
-                        Fecha de Nacimiento</div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.bebe.fechaNacimiento)
-                    </div>
-                    <div class="display-label">
-                        Edad:
-                    </div>
-                    <div class="display-field">
-                        @((int)(DateTime.Today.Subtract(Model.bebe.fechaNacimiento).TotalDays / 30))
-                        meses
-                    </div>
-                    <div class="display-label">
-                        Mama Canguro:
-                    </div>
-                    <div class="display-field">
-                        @if (Model.bebe.mamaCanguro == "Si")
-                        { 
-                            <p>
-                                Si</p> 
-                        }
-                        else
-                        {
-                            <p>
-                                No</p> 
-                        }
-                    </div>
-                    <div class="display-label">
-                        Observaciones</div>
-                    <div class="display-field">                        
-                        @Html.DisplayFor(model => model.bebe.historialNeo.ToList().Last().observaciones)
-                    </div>
-                </td>
-                <td>
-                    <div class="display-label">
-                    </div>
-                    <div class="display-field" style="text-align: right">
-                        @if (Model.bebe.sexo.descripcion == "Femenino")
-                        {
-                            <img src="@Url.Content("~/Content/images/babyfemale.png")" alt="Femenino" width="100" height="100" />
-                        }
-                        else
-                        {
-                            <img src="@Url.Content("~/Content/images/babymale.png")" alt="Masculino" width="100" height="100" />
-                        }
-                        <br />
-                        @*@if (Model.bebe.riesgo.descripcion == "Nada")
-                        {
-                            <img src="@Url.Content("~/Content/images/female_user.png")" alt="Femenino" width="100" height="100" />
-                        }
-                        else
-                        {
-                            if (Model.bebe.riesgo.descripcion == "Poco")
-                            { 
-                            <img src="@Url.Content("~/Content/images/female_user_warning.png")" alt="Femenino" width="100" height="100" />
-                            }
-                            else
-                            { 
-                            <img src="@Url.Content("~/Content/images/female_user_peligro.png")" alt="Femenino" width="100" height="100" />
-                            }
-                        }*@
-                    </div>
+                <td colspan="2">
+                <div class="display-label">
+                    Bebes</div>
+                <div id="bebesMadre">
+                    @Html.Action("BebesMadre", "Madres", new { id = Model.bebe.madreID })
+                </div>
                 </td>
             </tr>
         </table>

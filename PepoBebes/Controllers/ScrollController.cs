@@ -15,8 +15,8 @@ namespace PepoBebes.Controllers
         // GET: /Scroll/
         public ViewResult AgendaScroll()
         {
-            DateTime semanaAntes = DateTime.Today.AddDays(-7);
-            return View(db.Agenda.Where(a => a.Status.description == "Nuevo" && (semanaAntes < a.fecha)&& (a.fecha<DateTime.Today)).ToList());
+            DateTime semanaAntes = DateTime.Today.AddDays(-4);
+            return View(db.Agenda.Where(a => (a.Status.description == "Nuevo" || a.Status.description == "Completado") && (semanaAntes < a.fecha) && (a.fecha < DateTime.Today)).OrderByDescending(a => a.fecha).ToList());
         }
 
         public ActionResult MadresScroll()
@@ -34,33 +34,33 @@ namespace PepoBebes.Controllers
             if (!string.IsNullOrEmpty(param.sSearch))
             {
                 //Used if particulare columns are filtered 
-                var nameFilter = Convert.ToString(Request["sSearch_1"]);
-                var dniFilter = Convert.ToString(Request["sSearch_2"]);
-                var domicilioFilter = Convert.ToString(Request["sSearch_3"]);
+                var dniFilter = Convert.ToString(Request["sSearch_1"]);
+                var apellidoFilter = Convert.ToString(Request["sSearch_2"]);
+                var nameFilter = Convert.ToString(Request["sSearch_3"]);
 
                 //Optionally check whether the columns are searchable at all 
-                var isNameSearchable = Convert.ToBoolean(Request["bSearchable_1"]);
-                var isDniSearchable = Convert.ToBoolean(Request["bSearchable_2"]);
-                var isDomicilioSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
+                var isDniSearchable = Convert.ToBoolean(Request["bSearchable_1"]);
+                var isApellidoSearchable= Convert.ToBoolean(Request["bSearchable_2"]);
+                var isNameSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
 
                 filteredMadres = db.Madres.ToList().Where(m => isNameSearchable && m.nombre.ToLower().Contains(param.sSearch.ToLower())
                                ||
-                               isDniSearchable && m.apellido.ToLower().Contains(param.sSearch.ToLower())
+                               isDniSearchable && m.dni.ToLower().Contains(param.sSearch.ToLower())
                                ||
-                               isDomicilioSearchable && m.dni.ToLower().Contains(param.sSearch.ToLower()));
+                               isApellidoSearchable && m.apellido.ToLower().Contains(param.sSearch.ToLower()));
             }
             else
             {
                 filteredMadres = allMadres;
             }
 
-            var isNameSortable = Convert.ToBoolean(Request["bSortable_1"]);
-            var isDniSortable = Convert.ToBoolean(Request["bSortable_2"]);
-            var isDomicilioSortable = Convert.ToBoolean(Request["bSortable_3"]);
+            var isDniSortable  = Convert.ToBoolean(Request["bSortable_1"]);
+            var isApellidoSortable = Convert.ToBoolean(Request["bSortable_2"]);
+            var  isNameSortable = Convert.ToBoolean(Request["bSortable_3"]);
             var sortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             Func<Madre, string> orderingFunction = (c => sortColumnIndex == 1 && isNameSortable ? c.nombre :
-                                                           sortColumnIndex == 2 && isDniSortable ? c.apellido :
-                                                           sortColumnIndex == 3 && isDomicilioSortable ? c.dni :
+                                                           sortColumnIndex == 2 && isDniSortable ? c.dni :
+                                                           sortColumnIndex == 3 && isApellidoSortable ? c.apellido :
                                                            "");
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
@@ -87,7 +87,8 @@ namespace PepoBebes.Controllers
         public ActionResult AjaxHandler(JQueryDataTableParamModel param)
         {
             //Filtra los eventos nuevos
-            var allAgendas = db.Agenda.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddDays(-7)).ToList();
+            var allAgendas = db.Agenda.ToList();
+            //.Where(a => a.Status.description == "Nuevo" && a.fecha < DateTime.Today && a.fecha > DateTime.Today.AddDays(-4)).ToList();
             
             IEnumerable<Agenda> filteredAgendas;
             //Check whether the Agendas should be filtered by keyword

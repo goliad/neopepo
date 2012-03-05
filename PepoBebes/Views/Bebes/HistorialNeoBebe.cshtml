@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PepoBebes.Models.HistorialNeo>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    tipo
+                </th>
+                <th>
+                    fechaIngreso
+                </th>
+                <th>
+                    pesoNeo
+                </th>
+                <th>
+                    lugarNacimiento
+                </th>
+                <th>
+                    derivacion
+                </th>
+                <th>
+                    medicoReceptor
+                </th>
+                <th>
+                    diagnostico
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaIngreso.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pesoNeo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lugarNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.derivacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.medicoReceptor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diagnostico)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    fechaEgreso
+                </th>
+                <th>
+                    medicoAlta
+                </th>
+                <th>
+                    responsable
+                </th>
+                <th>
+                    observaciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaEgreso.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.medicoAlta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.responsable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.observaciones)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
