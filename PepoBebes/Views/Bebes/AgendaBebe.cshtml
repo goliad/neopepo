@@ -2,9 +2,7 @@
 @{
     Layout = null;
 }
-<p>
-    @Html.ActionLink("Agregar Evento", "Create","Agenda")
-</p>
+
 <table>
     <thead>
         <tr>
@@ -20,8 +18,7 @@
             <th>
                 Status
             </th>
-            <th>
-            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -40,11 +37,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Status.description)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit","Agenda", new { id = item.agendaID },null) |
-                    @Html.ActionLink("Details", "Details","Agenda", new { id = item.agendaID },null) |
-                    @Html.ActionLink("Delete", "Delete", "Agenda", new { id = item.agendaID },null)
-                </td>
+
             </tr>
         }
     </tbody>

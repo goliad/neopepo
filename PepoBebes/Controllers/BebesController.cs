@@ -147,7 +147,7 @@ namespace PepoBebes.Controllers
                 db.SaveChanges();
 
                 //Redirigir al index de Madres
-                return RedirectToAction("Index","Madres");  
+                return RedirectToAction("Edit", "Bebes", new { id= bebe.bebeID});  
             }
 
             ViewBag.sexoID = new SelectList(db.Sexos, "sexoID", "descripcion", bebe.sexoID);

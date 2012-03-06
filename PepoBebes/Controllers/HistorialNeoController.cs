@@ -34,10 +34,17 @@ namespace PepoBebes.Controllers
         //
         // GET: /HistorialNeo/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            Bebe b = db.Bebes.Find(id);
+            HistorialNeo h = new HistorialNeo
+            {
+                bebeID=b.bebeID,
+                bebe=b, 
+                fecha=DateTime.Today
+            };
             ViewBag.bebeID = new SelectList(db.Bebes, "bebeID", "dni");
-            return View();
+            return View(h);
         } 
 
         //
@@ -50,7 +57,7 @@ namespace PepoBebes.Controllers
             {
                 db.HistorialNeo.Add(historialneo);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Edit", "Bebes", new { id = historialneo.bebeID });  
             }
 
             ViewBag.bebeID = new SelectList(db.Bebes, "bebeID", "dni", historialneo.bebeID);

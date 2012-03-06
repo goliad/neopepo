@@ -36,7 +36,8 @@
 	zoom: 1; /* Feeling sorry for IE */
 }
 
-.dataTables_processing {
+.dataTables_processing
+{
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -47,9 +48,9 @@
 	padding: 14px 0 2px 0;
 	border: 1px solid #ddd;
 	text-align: center;
-	color: #999;
+	color: #000000;
 	font-size: 14px;
-	background-color: white;
+	background-color: #CCFF99;
 }
 
 .dataTables_length {
@@ -57,10 +58,11 @@
 	float: left;
 }
 
-.dataTables_filter {
+.dataTables_filter
+{
 	width: 50%;
-	float: right;
-	text-align: right;
+	float: left;
+	text-align: left;
 }
 
 .dataTables_info {
@@ -69,8 +71,8 @@
 }
 
 .dataTables_paginate {
-	float: right;
-	text-align: right;
+	float:none;
+	text-align:center;
 }
 
 /* Pagination nested */
@@ -219,12 +221,14 @@ table.display tr.even.gradeA {
 	background-color: #eeffee;
 }
 
-table.display tr.odd.gradeC {
-	background-color: #ddddff;
+table.display tr.odd.gradeC
+{
+	background-color: #FFCC66;
 }
 
-table.display tr.even.gradeC {
-	background-color: #eeeeff;
+table.display tr.even.gradeC
+{
+	background-color: #FFFFCC;
 }
 
 table.display tr.odd.gradeX {
@@ -244,8 +248,9 @@ table.display tr.even.gradeU {
 }
 
 
-tr.odd {
-	background-color: #E2E4FF;
+tr.odd
+{
+	background-color: #CCFFCC;
 }
 
 tr.even {

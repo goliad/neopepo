@@ -38,7 +38,7 @@
     
             <tr>
                 <th>
-                    Editar
+                   @Html.ActionLink("Editar", "Edit", "Bebes",new { id=item.bebeID },null)
                 </th>
                 <th>
                     @Html.DisplayFor(modelItem => item.fechaNacimiento)

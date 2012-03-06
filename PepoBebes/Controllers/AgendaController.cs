@@ -35,11 +35,18 @@ namespace PepoBebes.Controllers
         //
         // GET: /Agenda/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            Bebe b = db.Bebes.Find(id);
+            Agenda a = new Agenda
+            {
+                bebeID = b.bebeID,
+                bebe = b,
+                fecha = DateTime.Today
+            };
             ViewBag.StatusID = new SelectList(db.Status, "StatusID", "description");
             ViewBag.bebeID = new SelectList(db.Bebes, "bebeID", "lugarNacimiento");
-            return View();
+            return View(a);
         } 
 
         //
@@ -52,7 +59,7 @@ namespace PepoBebes.Controllers
             {
                 db.Agenda.Add(agenda);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Edit", "Bebes", new { id = agenda.bebeID }); 
             }
 
             ViewBag.StatusID = new SelectList(db.Status, "StatusID", "description", agenda.StatusID);

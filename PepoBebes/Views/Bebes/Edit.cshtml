@@ -111,15 +111,22 @@
     </fieldset>
 }
 
-<div id="agendaBebe">   
-@Html.Action("AgendaBebe","Bebes")
+
+<div id="historialNeoBebe"> 
+<p>
+    <a data-ajax="true" data-ajax-loading="#cargando" data-ajax-mode="replace" data-ajax-update="#contenido" href="/HistorialNeo/Create/@(Model.bebeID)">Agregar Historial Neonatologia</a>
+</p>  
+@Html.Action("HistorialNeoBebe","Bebes")
 </div>
 
-<div id="historialNeoBebe">   
-@Html.Action("HistorialNeoBebe","Bebes")
+<div id="agendaBebe">   
+<p>
+ @Html.ActionLink("Agregar evento", "Create","Agenda", new { id=Model.bebeID },null)
+</p> 
+@Html.Action("AgendaBebe","Bebes")
 </div>
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index","Madres")
 </div>
