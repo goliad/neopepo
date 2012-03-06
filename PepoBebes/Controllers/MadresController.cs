@@ -123,6 +123,85 @@ namespace PepoBebes.Controllers
 
 
 
+
+        //CONSULTAS
+        //
+        //Consultas de madres
+        public ViewResult Consultas()
+        {
+            var madres = db.Madres.Include(m => m.departamento);
+            return View(madres.ToList());
+        }
+
+
+
+        public ActionResult BebesDepartamentos(JQueryDataTableParamModel param)
+        {
+            var allMadres = db.Bebes.ToList();
+            IEnumerable<Bebe> filteredMadres;
+            
+            //Check whether the madre should be filtered by keyword
+            if (!string.IsNullOrEmpty(param.sSearch))
+            {
+                //Used if particulare columns are filtered 
+                var dniFilter = Convert.ToString(Request["sSearch_1"]);
+                var apellidoFilter = Convert.ToString(Request["sSearch_2"]);
+                var nameFilter = Convert.ToString(Request["sSearch_3"]);
+
+                //Optionally check whether the columns are searchable at all 
+                var isDniSearchable = Convert.ToBoolean(Request["bSearchable_1"]);
+                var isApellidoSearchable = Convert.ToBoolean(Request["bSearchable_2"]);
+                var isNameSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
+
+                filteredMadres = db.Bebes.ToList().Where(m => isNameSearchable && m.nombre.ToLower().Contains(param.sSearch.ToLower())
+                               ||
+                               isDniSearchable && m.dni.ToLower().Contains(param.sSearch.ToLower())
+                               ||
+                               isApellidoSearchable && m.hc.ToLower().Contains(param.sSearch.ToLower()));
+            }
+            else
+            {
+                filteredMadres = allMadres;
+            }
+
+            var isDniSortable = Convert.ToBoolean(Request["bSortable_1"]);
+            var isApellidoSortable = Convert.ToBoolean(Request["bSortable_2"]);
+            var isNameSortable = Convert.ToBoolean(Request["bSortable_3"]);
+            var sortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
+            Func<Bebe, string> orderingFunction = (c => 
+                                                           sortColumnIndex == 1 && isDniSortable ? c.madre.departamentoID.ToString() :
+                                                           sortColumnIndex == 2 && isApellidoSortable ? c.madre.departamento.descripcion :
+                                                           sortColumnIndex == 3 && isNameSortable ? c.nombre :
+                                                           "");
+
+            var sortDirection = Request["sSortDir_0"]; // asc or desc
+            if (sortDirection == "asc")
+                filteredMadres = filteredMadres.OrderBy(c => c.madre.departamentoID.ToString());
+            else
+                filteredMadres = filteredMadres.OrderByDescending(c => c.madre.departamentoID.ToString());
+
+            //var displayedMadres = filteredMadres.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var displayedMadres = filteredMadres.Skip(param.iDisplayStart).Take(allMadres.Count);
+
+
+            var result = from c in displayedMadres select new[] { c.madre.departamentoID.ToString(), c.madre.departamento.descripcion, c.madre.dni, c.dni,c.nombre, c.hc, c.fechaNacimiento.ToShortDateString()};
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = allMadres.Count(),
+                iTotalDisplayRecords = filteredMadres.Count(),
+                aaData = result
+            },
+                        JsonRequestBehavior.AllowGet);
+        }
+        //-------------------------------------
+        //FIN CONSULTAS------------------------
+
+
+
+
+
+
         //-----------------------------------------------------
         // Codigo para el Data Table 
         public ActionResult AjaxHandler(JQueryDataTableParamModel param)

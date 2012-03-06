@@ -1,6 +1,125 @@
-﻿@{
+﻿@model IEnumerable<PepoBebes.Models.Madre>
+@{
     ViewBag.Title = "Consultas";
     Layout = "~/Views/Shared/_ABMLayout.cshtml";
 }
+<h2>
+    Consultas</h2>
+<table id="myDataTable">
+    <thead>
+        <tr>
+            <th>
+                DepOrd
+            </th>
+            <th>
+                departamento
+            </th>
+            <th>
+                dni
+            </th>
+@*            <th>
+                apellido
+            </th>
+            <th>
+                nombre
+            </th>*@
+            <th>
+                dniBebe
+            </th>
+            <th>
+                nombreBebe
+            </th>
+            <th>
+                hc
+            </th>
+            <th>
+                fechaNacimiento
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var oTable = $('#myDataTable').dataTable({
+            "bInfo": true,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bSort": false,
+            //            "sPaginationType": "full_numbers",
+            "bPaginate": false,
 
-<h2>Consultas</h2>
+            "bServerSide": true,
+            "sAjaxSource": "/Madres/BebesDepartamentos",
+            "bProcessing": true,
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Content/DataTables-1.9.0/extras/TableTools/media/swf/copy_cvs_xls_pdf.swf",
+                "aButtons": [
+				            {
+				                "sExtends": "copy",
+				                "sButtonText": "Copiar"
+				            },
+
+				            {
+				                "sExtends": "xls",
+				                "sButtonText": "Guardar Excel"
+				            },
+                            {
+                                "sExtends": "pdf",
+                                "sButtonText": "Pdf"
+                            }
+			                ]
+            },
+            "oLanguage": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "<a data-ajax=\"true\" data-ajax-loading=\"#cargando\" data-ajax-mode=\"replace\" data-ajax-update=\"#contenido\" href=\"/Madres/Create\">Crear Madre</a>",
+                "sInfo": "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando desde 0 hasta 0 de 0 registros",
+                "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar DNI:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sPrevious": "Anterior",
+                    "sNext": "Siguiente",
+                    "sLast": "Último"
+                }
+            },
+            "aoColumns": [
+                        { "sName": "departamentoOrd" },
+                        { "sName": "departamento" },
+                        { "sName": "dni" },
+                        { "sName": "dniBebe" },
+                        { "sName": "nombreBebe" },
+                        { "sName": "hc" },
+			            { "sName": "fechaNacimiento" },
+		            ]
+        }).rowGrouping({ iGroupingColumnIndex: 1, iGroupingColumnIndex2: 2,
+            bExpandableGrouping: true,bExpandableGrouping2: true, iGroupingOrderByColumnIndex: 0,
+            sGroupLabelPrefix: "departamento: ",
+            sGroupLabelPrefix2: "Madre: "
+        });
+    });								
+</script>
+
+
+<style type="text/css">
+    .expanded-group
+    {
+        background: url("/Content/DataTables-1.9.0/media/images/minus.jpg") no-repeat scroll left center transparent;
+        padding-left: 15px !important;
+    }
+    .collapsed-group
+    {
+        background: url("/Content/DataTables-1.9.0/media/images/plus.jpg") no-repeat scroll left center transparent;
+        padding-left: 15px !important;
+    }
+    .subgroup
+    {
+    	background:#ddffdd;
+    	}
+</style>

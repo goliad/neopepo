@@ -175,6 +175,8 @@
     <Content Include="Content\DataTables-1.9.0\media\images\forward_disabled.png" />
     <Content Include="Content\DataTables-1.9.0\media\images\forward_enabled.png" />
     <Content Include="Content\DataTables-1.9.0\media\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.9.0\media\images\minus.jpg" />
+    <Content Include="Content\DataTables-1.9.0\media\images\plus.jpg" />
     <Content Include="Content\DataTables-1.9.0\media\images\sort_asc.png" />
     <Content Include="Content\DataTables-1.9.0\media\images\sort_asc_disabled.png" />
     <Content Include="Content\DataTables-1.9.0\media\images\sort_both.png" />
@@ -312,6 +314,7 @@
     <Content Include="Scripts\jquery-ui-1.8.17.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.dataTables.rowGrouping.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
