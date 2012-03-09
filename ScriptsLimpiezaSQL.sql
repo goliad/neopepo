@@ -1,8 +1,8 @@
 --Madres Repetidas y Bebes con reingreso en neo
-
 select * FROM Madres
 WHERE dni='38599864'
 
+--modificacion
 select * from Bebes
 where madreID = 29
 
